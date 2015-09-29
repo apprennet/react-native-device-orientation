@@ -4,9 +4,8 @@
 @synthesize bridge = _bridge;
 RCT_EXPORT_MODULE();
 
-- (NSString *) getOrientationDevice{
+- (NSString *) getOrientationDevice {
   // grab the device orientation so we can pass it back to the js side.
-  NSString *orientation;
   NSString* orientationIn;
   
   switch ([[UIDevice currentDevice] orientation]) {
@@ -19,18 +18,10 @@ RCT_EXPORT_MODULE();
     case UIDeviceOrientationPortrait:
       orientationIn = @"portrait-primary";
       break;
-    case UIDeviceOrientationPortraitUpsideDown:
-      orientationIn = @"portrait-secondary";
-      break;
     default:
-      orientationIn = @"portait";
+      orientationIn = @"unknown";
       break;
   }
-  
-  if ([orientationIn isEqual: @"unlocked"]) {
-    orientationIn = orientation;
-  }
-  
   return orientationIn;
 }
 
